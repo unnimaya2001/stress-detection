@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title%}Employee Profile{% endblock %}
+
+{% block nav %}
+  <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+     {% if usr %}
+    <a class="navbar-brand" href="/adminHome">Stress Monitoring</a>
+    {% else %}
+    <a class="navbar-brand" href="/empHome">Stress Monitoring</a>
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Logout</a>
+        </li>
+      </ul>
+      {% block search %}
+      {% endblock %}
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="main-body mt-5">
+          <div class="row gutters-sm">
+            <div class="col-md-5 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <div class="mt-3">
+                      <h4>{{ data[3] }}</h4>
+                      <p class="text-secondary mb-1">{{ data[9] }} @ company-NAme</p>
+                      <p class="text-secondary text-sm mb-1">Date of Joining : {{ data[10] }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mt-3">
+                <div class="card-body">
+                  <div class="row">
+					<div class="col-sm-4">
+					  <h6 class="mb-0">Age</h6>
+					</div>
+					<div class="col-sm-8 text-secondary">
+                      {{ data[11]|int }}
+					</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+					<div class="col-sm-4">
+					  <h6 class="mb-0">Gender</h6>
+					</div>
+					<div class="col-sm-8 text-secondary">
+                      {{ data[7] }}
+					</div>
+                  </div>
+                   <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">{{ data[6] }}</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">{{ data[8] }}</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">{{ data[5] }}</div>
+                  </div>
+                  <hr class="mx-n3">
+                   <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">{{ data[4] }}</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-7">
+              <div class="card mb-3">
+                <div class="card-body">
+                   <div class="row">
+                    <div class="col-sm-4"> <h6 class="mb-0">Latest Reading Taken On :</h6> </div>
+                    <div class="col-sm-7 text-secondary"> {{ emo[2] }}  --  {{ emo[3] }}</div>
+
+                  </div>
+                   <hr>
+                  <div class="row">
+                    <div class="col-sm-3"> <h6 class="mb-0">Anger :</h6> </div>
+                    <div class="col-sm-9 text-secondary"> {{ emo[4] }}% </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                  <div class="col-sm-3"> <h6 class="mb-0">Disgust :</h6></div>
+                    <div class="col-sm-9 text-secondary">{{ emo[5] }}%</div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3"><h6 class="mb-0">Fear :</h6></div>
+                    <div class="col-sm-9 text-secondary">{{ emo[6] }}%</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-3"> <h6 class="mb-0">Happy :</h6></div>
+                    <div class="col-sm-9 text-secondary">{{ emo[7] }}%</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-3"> <h6 class="mb-0">Sadness :</h6></div>
+                    <div class="col-sm-9 text-secondary">{{ emo[8] }}%</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-3"> <h6 class="mb-0">Surprise :</h6></div>
+                    <div class="col-sm-9 text-secondary">{{ emo[9] }}%</div>
+                  </div>
+                  <hr class="mx-n3">
+                  <div class="row">
+                    <div class="col-sm-3"> <h6 class="mb-0">Neutral :</h6></div>
+                    <div class="col-sm-9 text-secondary">{{ emo[10] }}%</div>
+                  </div>
+                </div>
+              </div>
+              {% if usr %}
+              <div class="card mb-3">
+                <div class="card-body">
+                   <div class="row">
+                     <div class="col-sm-4">
+                       <a href="/AdminLog/{{ data[2] }}" class="btn btn-secondary">Emotion Log</a>
+                     </div>
+                   </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+    </div>
+</div>
+{% endblock %}

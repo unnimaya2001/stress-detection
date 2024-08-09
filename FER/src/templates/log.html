@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title%} Log {% endblock %}
+
+
+{% block nav %}
+  <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/empHome">Stress Monitoring</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/empProfile">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Logout</a>
+        </li>
+      </ul>
+      {% block search %}
+      {% endblock %}
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-3">
+ <div class="table-responsive">
+    {% if data %}
+	<table align="center" border="1" class="table">
+  <tbody>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Angry</th>
+      <th>Disgust</th>
+      <th>Fear</th>
+      <th>Happy</th>
+      <th>Sad</th>
+      <th>Surprise</th>
+      <th>Neutral</th>
+    </tr>
+   {% for i in data %}
+    <tr class="clickable" onclick="window.location='/docprofile/{{ i[0] }}'">
+      <td>{{ i[2] }}</td>
+	  <td>{{ i[3] }}</td>
+      <td>{{ i[4] }}%</td>
+      <td>{{ i[5] }}%</td>
+      <td>{{ i[6] }}%</td>
+      <td>{{ i[7] }}%</td>
+      <td>{{ i[8] }}%</td>
+      <td>{{ i[9] }}%</td>
+      <td>{{ i[10] }}%</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+     {% else %}
+     <h3 align="center">No Data To Show!</h3>
+     {% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title%}Requests{% endblock %}
+
+{% block nav %}
+  <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/adminHome">Stress Monitoring</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/empView">employees</a>
+        </li>
+      </ul>
+      {% block search %}
+      {% endblock %}
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-3">
+ <div class="table-responsive">
+     {% if data %}
+	<table align="center" class="table">
+        <tr>
+            <th align="left">Employee Id</th>
+            <th align="left">Name</th>
+            <th align="left">Age</th>
+            <th align="left">Gender</th>
+            <th align="left">Address</th>
+            <th align="left">Phone</th>
+            <th align="left">Position</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for i in data %}
+        <tr>
+          <td align="center">{{ i[1] }}</td>
+          <td>{{ i[2] }}</td>
+          <td>{{ i[10]|int }}</td>
+          <td>{{ i[6] }}</td>
+          <td>{{ i[7] }}</td>
+          <td>{{ i[3] }}</td>
+          <td>{{ i[9] }}</td>
+          <td>
+              <a href="/dismiss/{{ i[1] }}" class="btn btn-danger">Dismiss</a>
+          </td>
+            <td>
+              <a href="/approve/{{ i[1] }}" class="btn btn-success">Approve</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+     {% else %}
+      <h3 align="center">No Pending Requests!</h3>
+     {% endif %}
+ </div>
+</div>
+{% endblock %}

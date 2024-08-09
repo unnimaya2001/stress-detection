@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Employee Page{% endblock %}
+
+{% block nav %}
+  <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/empHome">Stress Monitoring</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/empProfile">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Logout</a>
+        </li>
+      </ul>
+      {% block search %}
+      {% endblock %}
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5" align="center">
+  <br>
+  <p><a href="/live" class="btn btn-outline-secondary btn-lg">Open Camera</a></p>
+  <br>
+  <p><a href="/log" class="btn btn-outline-secondary btn-lg">Log</a></p>
+</div>
+{% endblock %}

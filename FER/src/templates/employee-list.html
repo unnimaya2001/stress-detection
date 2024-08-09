@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title%}Employees{% endblock %}
+
+{% block nav %}
+  <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/adminHome">Stress Monitoring</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      {% block search %}
+      {% endblock %}
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-3">
+ <div class="table-responsive">
+     {% if data %}
+	<table align="center" class="table">
+        <tr>
+            <th>Employee Id</th>
+            <th align="left">Employee</th>
+            <th align="left">Contact</th>
+            <th align="left">Position</th>
+            <th align="left">Joined on</th>
+        </tr>
+        {% for i in data %}
+        <tr class="clickable" onclick="window.location='/Admin_empProfile/{{ i[1] }}'">
+          <td>{{ i[1] }}</td>
+            <td><b>{{ i[2] }}</b><br>
+              <small>{{ i[6] }} - {{ i[10]|int }}</small><br>
+              <small>Address : {{ i[7] }}</small></td>
+          <td>Number : {{ i[3] }} <br>
+              Email : {{ i[4] }}</td>
+          <td>{{ i[8] }}</td>
+          <td>{{ i[9] }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+     {% else %}
+      <h3 align="center">No Pending Requests!</h3>
+     {% endif %}
+ </div>
+</div>
+{% endblock %}
