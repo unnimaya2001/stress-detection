@@ -18,6 +18,7 @@ It leverages machine learning and image processing techniques to analyze facial 
 - Flask (Web Framework)
 - OpenCV (Computer Vision)
 - DeepFace (Emotion Recognition)
+- Haar cascades (Face Detection)
 - MySQL (Database)
 - HTML/CSS (Frontend)
 
